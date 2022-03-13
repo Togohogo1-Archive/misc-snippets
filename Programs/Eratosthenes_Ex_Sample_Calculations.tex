@@ -1,0 +1,38 @@
+% Tex code can be rendered on https://quicklatex.com/ with "Report LaTeX errors" unchecked
+
+% To calculate C, the distance from Toronto to the equator (arc length d) is needed for the following ratio:
+\text{$\frac{\theta}{d} = \frac{360}{C}$}
+
+\hrulefill
+
+% Rearranging a couple of terms:
+\text{$C = \frac{360d}{\theta} = \frac{360d}{\arctan{\left(\frac{s}{h}\right)}}$}\\
+
+\hrulefill
+
+% Plugging in the values into the equation:
+\text{$C = \frac{360 \cdot 4851}{\arctan{\left(\frac{22.7}{20.9}\right)}} = 36870.979\,$km}
+
+\hrulefill
+
+% Taking into account uncertainties:
+\text{let $y = \frac{s}{h}$}\\
+\text{$\frac{\Delta y}{y} = \frac{\Delta s}{s} + \frac{\Delta h}{h}$}\\
+\text{$\Delta y = y \cdot \left( \frac{\Delta s}{s} + \frac{\Delta h}{h} \right) = \frac{s}{h} \cdot \left( \frac{\Delta s}{s} + \frac{\Delta h}{h} \right)$}\\
+\text{$\Delta y = \frac{22.7}{20.9} \cdot \left( \frac{0.05}{22.7} + \frac{0.05}{20.9} \right) = 0.004991\,$cm}\\
+\text{$\therefore y + \Delta y = (1.086124 \pm 0.004991)\,\text{cm}$}\\
+
+\text{let $z(y) = \arctan{(y)}$}\\
+\text{$dz = z'(y) \cdot dy$}\\
+\text{$dz = \frac{dy}{1 + y^{2}} = \frac{0.004991}{1 + 1.086124^{2}} = 0.002290$}\\
+\text{$\therefore z + \Delta z = 47.364080 \pm 0.002290$}\\
+
+\text{let $C(z) = \frac{360 \cdot 4851}{z}$}\\
+\text{$dC = \left| C'(z) \cdot dz \right|$}\\
+\text{$dC = \frac{360 \cdot 4851}{z^{2}} \cdot dz = \frac{360 \cdot 4851}{47.364080^{2}} \cdot 0.002290 = 1.782670\,$km}\\
+\text{$\therefore C + \Delta C = (36871 \pm 2)\,\text{km}$ to 1 s.f.}\\
+
+\hrulefill
+
+% Doing a percent error analysis:
+\text{$\left| \frac{C_{\text{approx}}-C_{\text{exact}}}{C_{\text{exact}}} \right| \times 100\% = \left| \frac{36871-40075}{40075} \right| \times 100\% = 8\%$ error}

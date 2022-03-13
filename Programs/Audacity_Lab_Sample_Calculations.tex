@@ -1,0 +1,33 @@
+% Tex code can be rendered on https://quicklatex.com/ with "Report LaTeX errors" unchecked
+
+% The uncertainty for the average f0 was found through the sample calculation below:
+\text{Differences in frequencies, $f_0$: $3603\,\text{s}^{-1}$, $3704\,\text{s}^{-1}$, $4131\,\text{s}^{-1}$}\\
+
+\text{Average $f_0 \approx 3812.667\,\text{s}^{-1}$}\\
+\text{Half range, $\frac{R}{2} = \frac{4131-3603}{2} = 264\,\text{s}^{-1}$}\\
+\text{$\Delta$ average $f_0 = \frac{R}{\sqrt{3}} \approx 152.4205\,\text{s}^{-1}$ ($\sqrt{3}$ from $3$ values)}\\
+\text{$\Delta$ average $f_0 = 200\,\text{s}^{-1}$ to 1 s.f.}\\
+
+\text{Taking into account uncertainties, average $f_0 = (3800 \pm 200)\,\text{s}^{-1}$}
+
+\hrulefill
+
+% The uncertainty for 1/λ was found through the sample calculation below:
+\text{Length of straw, $L = \frac{\lambda}{2}$}\\
+
+\text{$L = (4.20 \pm 0.05)\,\text{cm} = (4.20\times10^{-2} \pm 5\times10^{-4})\,\text{m}$}\\
+\text{$\lambda = 2L = (8.4\times10^{-2} \pm 1\times10^{-3})\,\text{m}$}\\
+
+\text{let $y = \frac{1}{\lambda} = \lambda^{-1}$}\\
+\text{$\frac{\Delta y}{y} = \left| \frac{\Delta \lambda}{\lambda} \right|$}\\
+\text{$\Delta y = y \cdot \left| \frac{\Delta \lambda}{\lambda} \right| = \frac{1}{\lambda} \cdot \left| \frac{\Delta \lambda}{\lambda} \right|$}\\
+
+\text{$y = \frac{1}{8.4\times10^{-2}} = 11.90476\,\text{m}^{-1}$}\\
+\text{$\Delta y = 11.90476 \cdot \left| \frac{1\times10^{-3}}{8.4\times10^{-2}} \right| = 0.14172\,\text{m}^{-1} = 0.1\text{m}^{-1}$ to 1 s.f.}\\
+
+\text{Taking into account uncertainties, $\frac{1}{\lambda} = (11.9 \pm 0.1)\,\text{m}^{-1}$}
+
+\hrulefill
+
+% Comparing results, ... A percent error analysis gives:
+\text{$\left| \frac{v_{\text{approx}}-v_{\text{exact}}}{v_{\text{exact}}} \right| \times 100\% = \left| \frac{322.24-346.2}{346.2} \right| \times 100\% = 7\%$ error}

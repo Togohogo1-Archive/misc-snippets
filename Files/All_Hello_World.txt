@@ -1,0 +1,523 @@
+Ada
+--------------------
+with Ada.Text_IO; use Ada.Text_IO;
+
+procedure Hello_World is
+begin
+    Put_Line ("Hello, World!");
+end Hello_World;
+--------------------
+
+
+Assembly (x64)
+--------------------
+.global _start
+    .text
+_start:
+    mov $1, %rax
+    mov $1, %rdi
+    mov $message, %rsi
+    mov $13, %rdx
+    syscall
+
+    mov $60, %rax
+    xor %rdi, %rdi
+    syscall
+message:
+    .ascii "Hello, World!\n"
+--------------------
+
+
+Assembly (x86)
+--------------------
+.global _start
+
+_start:
+    movb $4, %al
+    incb %bl
+    movl $hw, %ecx
+    movb $14, %dl
+    int $0x80
+
+    mov %di, %ax
+    mov %di, %bx
+    incb %al
+    int $0x80
+
+hw:
+.ascii "Hello, World!\n"
+--------------------
+
+
+AWK
+--------------------
+END {print "Hello, World!"}
+--------------------
+
+
+Brain****
+--------------------
+-[------->+<]>-.-[->+++++<]>++.+++++++..+++.[->+++++<]>+.------------.---[->+++<]>.-[--->+<]>---.+++.------.--------.-[--->+<]>.
+--------------------
+
+
+C
+--------------------
+#include <stdio.h>
+
+int main() {
+    printf("Hello, World!\n");
+    return 0;
+}
+--------------------
+
+
+C#
+--------------------
+using System;
+
+class HelloWorld
+{
+    public static void Main(string[] args)
+    {
+        Console.WriteLine("Hello, World!");
+    }
+}
+--------------------
+
+
+C++03
+--------------------
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    cout << "Hello, World!" << endl;
+    return 0;
+}
+--------------------
+
+
+C++11
+--------------------
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    cout << "Hello, World!" << endl;
+    return 0;
+}
+--------------------
+
+
+C++14
+--------------------
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    cout << "Hello, World!" << endl;
+    return 0;
+}
+--------------------
+
+
+C++17
+--------------------
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    cout << "Hello, World!" << endl;
+    return 0;
+}
+--------------------
+
+
+C11
+--------------------
+#include <stdio.h>
+
+int main() {
+    printf("Hello, World!\n");
+    return 0;
+}
+--------------------
+
+
+Clang
+--------------------
+#include <stdio.h>
+
+int main() {
+    printf("Hello, World!\n");
+    return 0;
+}
+--------------------
+
+
+Clang++
+--------------------
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    cout << "Hello, World!" << endl;
+    return 0;
+}
+--------------------
+
+
+COBOL
+--------------------
+IDENTIFICATION DIVISION.
+PROGRAM-ID. hello.
+PROCEDURE DIVISION.
+DISPLAY "Hello, World!".
+STOP RUN.
+--------------------
+
+
+CoffeeScript
+--------------------
+process.stdout.write "Hello, World!"
+--------------------
+
+
+D
+--------------------
+import std.stdio;
+
+void main()
+{
+    printf("Hello, World!");
+}
+--------------------
+
+
+Dart
+--------------------
+
+--------------------
+
+
+F#
+--------------------
+open System
+
+[<EntryPoint>]
+let main argv =
+    printfn "Hello, World!"
+    Console.ReadLine() |> ignore
+    0
+--------------------
+
+
+Forth
+--------------------
+.( Hello, World!)
+--------------------
+
+
+Fortran
+--------------------
+write(*,*) "Hello, World!"
+end
+--------------------
+
+
+Go
+--------------------
+package main
+
+import "fmt"
+
+func main() {
+    fmt.Println("Hello, World!")
+}
+--------------------
+
+
+Groovy
+--------------------
+
+--------------------
+
+
+Haskell
+--------------------
+main = putStrLn "Hello, World!"
+--------------------
+
+
+INTERCAL
+--------------------
+DO ,1 <- #13
+PLEASE DO ,1 SUB #1 <- #238
+DO ,1 SUB #2 <- #108
+DO ,1 SUB #3 <- #112
+DO ,1 SUB #4 <- #0
+DO ,1 SUB #5 <- #64
+DO ,1 SUB #6 <- #194
+PLEASE DO ,1 SUB #7 <- #48
+DO ,1 SUB #8 <- #26
+DO ,1 SUB #9 <- #244
+PLEASE DO ,1 SUB #10 <- #168
+DO ,1 SUB #11 <- #24
+DO ,1 SUB #12 <- #16
+DO ,1 SUB #13 <- #162
+PLEASE READ OUT ,1
+PLEASE GIVE UP
+--------------------
+
+
+Java 11
+--------------------
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}
+--------------------
+
+
+Java 8
+--------------------
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}
+--------------------
+
+
+Kotlin
+--------------------
+fun main(args: Array<String>) {
+    print("Hello, World!")
+}
+--------------------
+
+
+Lisp
+--------------------
+(write-line "Hello, World!")
+--------------------
+
+
+Lua
+--------------------
+print("Hello, World!");
+--------------------
+
+
+NASM
+--------------------
+section .text
+global  _start
+
+_start:
+        mov     eax,    4
+        xor     ebx,    ebx
+        inc     ebx
+        mov     ecx,    msg
+        mov     edx,    len
+        int     80h
+
+        xor     eax,    eax
+        inc     eax
+        xor     ebx,    ebx
+        int     80h
+
+section .data
+       msg     db      "Hello, World!", 0xA
+       len     equ     $ - msg
+--------------------
+
+
+NASM64
+--------------------
+global _start
+
+section .text
+
+_start:
+  mov rax, 1
+  mov rdi, 1
+  mov rsi, msg
+  mov rdx, msglen
+  syscall
+
+  mov rax, 60
+  mov rdi, 0
+  syscall
+
+section .rodata
+  msg: db "Hello, World!", 10
+  msglen: equ $ - msg
+--------------------
+
+
+OCaml
+--------------------
+print_string "Hello, World!\n"
+--------------------
+
+
+Pascal
+--------------------
+program helloworld;
+begin
+  writeln('Hello, World!');
+end.
+--------------------
+
+
+Perl
+--------------------
+print "Hello, World!"
+--------------------
+
+
+PHP
+--------------------
+<?php
+    echo "Hello, World!";
+?>
+--------------------
+
+
+Pike
+--------------------
+int main()
+{
+  write("Hello, World!\n");
+  return 0;
+}
+--------------------
+
+
+Prolog
+--------------------
+main:-
+    process,
+    halt.
+
+process:-
+    write('Hello, World!'), nl.
+    true.
+
+:- main.
+--------------------
+
+
+PyPy 2
+--------------------
+print "Hello, World!"
+--------------------
+
+
+PyPy 3
+--------------------
+print("Hello, World!")
+--------------------
+
+
+Python 2
+--------------------
+print "Hello, World!"
+--------------------
+
+
+Python 3
+--------------------
+print("Hello, World!")
+--------------------
+
+
+Racket
+--------------------
+#lang racket
+(displayln "Hello, World!")
+--------------------
+
+
+Ruby 2
+--------------------
+puts 'Hello, World!'
+--------------------
+
+
+Rust
+--------------------
+fn main() {
+    println!("Hello, World!");
+}
+--------------------
+
+
+Scala
+--------------------
+object helloworld extends App {
+    println("Hello World!")
+}
+--------------------
+
+
+Scheme
+--------------------
+(begin
+  (display "Hello, World!")
+  (newline))
+--------------------
+
+
+Sed
+--------------------
+
+--------------------
+
+
+Swift
+--------------------
+print("Hello, World!")
+--------------------
+
+
+TCL
+--------------------
+puts "Hello, World!"
+--------------------
+
+
+Text
+--------------------
+Hello, World!
+--------------------
+
+
+Turing
+--------------------
+put "Hello, World!"
+--------------------
+
+
+V8 JavaScript
+--------------------
+print('Hello, World!');
+--------------------
+
+
+Visual Basic
+--------------------
+Module Hello_World
+Sub Main()
+    Console.WriteLine("Hello, World!")
+End Sub
+End Module
+--------------------
