@@ -1,0 +1,4 @@
+%chants add bbb
+%split
+%remind bbb 1m %h1 bbb
+%shuffle
