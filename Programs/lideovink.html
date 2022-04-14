@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html>
+  <style>
+    .resizable-content {
+      min-width: 80px;
+      min-height: 45px;
+      max-height: fit-content;
+      max-width: fit-content;
+      border: 1px solid black;
+      resize: both;
+      overflow: auto;
+    }
+  </style>
+
+  <body>
+    <div class="slidecontainer">
+      <p>
+        Link:
+        <input type="text" id="videoInput">
+        <input type="button" value="Submit" onclick="submitVideo()">
+      </p>
+
+      <p>
+        VideoLink pause:
+        <input type="button" value="Opacity Filter", id="opacityButton">
+      </p>
+    </div>
+
+    <div class="resizable-content" id="videoEmbed">
+      <iframe width="400" height="225" src="https://www.youtube.com/embed/tgbNymZ7vqY" id="video"></iframe>
+    </div>
+  </body>
+
+  <script>
+    const videoEmbed = document.getElementById("videoEmbed");
+    const videoInput = document.getElementById("videoInput");
+    const opacityButton = document.getElementById("opacityButton");
+    const video = document.getElementById("video");
+
+    console.log(videoEmbed.offsetWidth, videoEmbed.offsetHeight);
+
+    function outputSize() {
+      console.log(videoEmbed.offsetWidth, videoEmbed.offsetHeight);
+      resizeVideo(videoEmbed.offsetWidth, videoEmbed.offsetHeight);
+      console.log(videoEmbed.offsetWidth, videoEmbed.offsetHeight);
+    }
+
+    console.log(videoEmbed.offsetWidth, videoEmbed.offsetHeight);
+    console.log("brhu");
+    outputSize();
+
+
+    // new ResizeObserver(outputSize).observe(videoEmbed);
+
+    function resizeVideo(w, h) {
+      video.width = w;
+      video.height = h;
+    }
+
+    function submitVideo() {
+      video.src = videoInput.value;
+    }
+  </script>
+</html>
+
+
+<!-- https://www.youtube.com/embed/dQw4w9WgXcQ -->
