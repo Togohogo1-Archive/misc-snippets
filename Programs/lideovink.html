@@ -5,9 +5,6 @@
     .resizable-content {
       min-width: 160px;
       min-height: 90px;
-      height: 0px;
-      width: 0px;
-      /* border: 1px solid black; */
       resize: both;
       overflow: auto;
     }
@@ -23,18 +20,19 @@
 
       <p>
         VideoLink pause:
-        <input type="button" value="Opacity Filter", id="opacityButton">
+        <input type="button" value="Opacity Filter", id="opacityButton" onclick="applyOpacity()">
       </p>
     </div>
 
     <div class="resizable-content" id="videoEmbed">
-      <iframe src="https://www.youtube.com/embed/tgbNymZ7vqY" id="video"></iframe>
+      <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" id="video" allowfullscreen></iframe>
     </div>
   </body>
 
   <script>
     // Flag for infinite ResizeObserver loop behavior
     let flag = false;
+    let isOpaque = false;
 
     const defaultWidth = 400;
     const defaultHeight = 225;
@@ -50,7 +48,7 @@
 
     function outputSize() {
       // Prevent infinite ResizeObserver behavior
-      if (flag === false)
+      if (!flag)
         return flag = true;
 
       // Minus 15 => no scroll bars
@@ -67,8 +65,24 @@
     function submitVideo() {
       video.src = videoInput.value;
     }
+
+    function hideVideo() {
+      video.style.opacity = 0;
+      video.pause;
+      isOpaque = true;
+    }
+
+    function showVideo() {
+      video.style.opacity = 100;
+      video.play;
+      isOpaque = false
+    }
+
+    function applyOpacity() {
+      if (isOpaque)
+        showVideo()
+      else
+        hideVideo()
+    }
   </script>
 </html>
-
-
-<!-- https://www.youtube.com/embed/dQw4w9WgXcQ -->
