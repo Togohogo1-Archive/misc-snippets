@@ -3,9 +3,11 @@
 <html>
   <style>
     .resizable-content {
-      min-width: 80px;
-      min-height: 45px;
-      border: 1px solid black;
+      min-width: 160px;
+      min-height: 90px;
+      height: 0px;
+      width: 0px;
+      /* border: 1px solid black; */
       resize: both;
       overflow: auto;
     }
@@ -34,22 +36,25 @@
     // Flag for infinite ResizeObserver loop behavior
     let flag = false;
 
+    const defaultWidth = 400;
+    const defaultHeight = 225;
+
     const videoEmbed = document.getElementById("videoEmbed");
     const videoInput = document.getElementById("videoInput");
     const opacityButton = document.getElementById("opacityButton");
     const video = document.getElementById("video");
 
-    videoEmbed.offsetWidth = 100;
-    videoEmbed.offsetHeight = 100;
-
+    videoEmbed.style.width = defaultWidth + 15 + "px";
+    videoEmbed.style.height = defaultHeight + 15 + "px";
+    resizeVideo(defaultWidth, defaultHeight)
 
     function outputSize() {
       // Prevent infinite ResizeObserver behavior
       if (flag === false)
         return flag = true;
 
-      // Minus 10 => no scroll bars
-      resizeVideo(videoEmbed.offsetWidth-10, videoEmbed.offsetHeight-10);
+      // Minus 15 => no scroll bars
+      resizeVideo(videoEmbed.offsetWidth-15, videoEmbed.offsetHeight-15);
     }
 
     new ResizeObserver(outputSize).observe(videoEmbed);
