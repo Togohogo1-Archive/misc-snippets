@@ -26,25 +26,33 @@
     </div>
 
     <div class="resizable-content" id="videoEmbed">
-      <iframe width="width: 100%;" height="height: 100%;" src="https://www.youtube.com/embed/tgbNymZ7vqY" id="video"></iframe>
+      <iframe src="https://www.youtube.com/embed/tgbNymZ7vqY" id="video"></iframe>
     </div>
   </body>
 
   <script>
+    // Flag for infinite ResizeObserver loop behavior
+    let flag = false;
+
     const videoEmbed = document.getElementById("videoEmbed");
     const videoInput = document.getElementById("videoInput");
     const opacityButton = document.getElementById("opacityButton");
     const video = document.getElementById("video");
 
-    console.log(videoEmbed.offsetWidth, videoEmbed.offsetHeight);
+    videoEmbed.offsetWidth = 100;
+    videoEmbed.offsetHeight = 100;
+
 
     function outputSize() {
-      console.log(videoEmbed.offsetWidth, videoEmbed.offsetHeight);
-      resizeVideo(videoEmbed.offsetWidth, videoEmbed.offsetHeight);
-      console.log(videoEmbed.offsetWidth, videoEmbed.offsetHeight);
+      // Prevent infinite ResizeObserver behavior
+      if (flag === false)
+        return flag = true;
+
+      // Minus 10 => no scroll bars
+      resizeVideo(videoEmbed.offsetWidth-10, videoEmbed.offsetHeight-10);
     }
 
-    // new ResizeObserver(outputSize).observe(videoEmbed);
+    new ResizeObserver(outputSize).observe(videoEmbed);
 
     function resizeVideo(w, h) {
       video.width = w;
