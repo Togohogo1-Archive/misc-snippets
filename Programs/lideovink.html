@@ -25,13 +25,12 @@
     </div>
 
     <div class="resizable-content" id="videoEmbed">
-      <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" id="video" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?enablejsapi=1" id="video" allowfullscreen></iframe>
     </div>
   </body>
 
   <script>
-    // Flag for infinite ResizeObserver loop behavior
-    let flag = false;
+    let flag = false;  // Flag for infinite ResizeObserver loop behavior
     let isOpaque = false;
 
     const defaultWidth = 400;
@@ -44,7 +43,9 @@
 
     videoEmbed.style.width = defaultWidth + 15 + "px";
     videoEmbed.style.height = defaultHeight + 15 + "px";
-    resizeVideo(defaultWidth, defaultHeight)
+    resizeVideo(defaultWidth, defaultHeight);
+
+    new ResizeObserver(outputSize).observe(videoEmbed);
 
     function outputSize() {
       // Prevent infinite ResizeObserver behavior
@@ -54,8 +55,6 @@
       // Minus 15 => no scroll bars
       resizeVideo(videoEmbed.offsetWidth-15, videoEmbed.offsetHeight-15);
     }
-
-    new ResizeObserver(outputSize).observe(videoEmbed);
 
     function resizeVideo(w, h) {
       video.width = w;
@@ -68,19 +67,22 @@
 
     function hideVideo() {
       video.style.opacity = 0;
+      video.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
       isOpaque = true;
+      console.log(video.contentWindow);
     }
 
     function showVideo() {
       video.style.opacity = 100;
-      isOpaque = false
+      video.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+      isOpaque = false;
     }
 
     function applyOpacity() {
       if (isOpaque)
-        showVideo()
+        showVideo();
       else
-        hideVideo()
+        hideVideo();
     }
   </script>
 </html>
