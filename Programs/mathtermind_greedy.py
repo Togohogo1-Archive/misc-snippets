@@ -1,19 +1,14 @@
 from collections import Counter
 from itertools import combinations as c
-from pprint import pprint
 from math import log2
 
-
-guesses = [
-(1, 2, 3, 4),(4, 13, 14 ,15),(3, 12, 14, 15),(3, 10, 11, 15)
-]
-matches = [1, 1, 2, 3]
-combos = list(c(range(1, 16), 3))
+guesses = [(1, 2, 3, 4)]
+matches = []
+pool = list(c(range(1, 16), 3))
 possible_guesses = list(c(range(1, 16), 4))
-pool = []
 
 # https://github.com/Togohogo1/Mathtermind/blob/main/classes/classic_solver.py
-def solve(pool):
+def solve():
     sols = []
 
     for cb in pool:
@@ -28,20 +23,19 @@ def solve(pool):
     return sols
 
 
-pool = solve(combos)
-
-
-def expected_entropy(guess, pool):
+# Expected entropy
+def E(guess):
     tot = 0
 
     for i in range(4):
-        prob = p(guess, i, pool)
+        prob = p(guess, i)
         tot += 0 if prob == 0 else prob*log2(1/prob)
 
     return tot
 
 
-def p(guess, theor_mt, pool):
+# Probability of getting `theor_mt` matches
+def p(guess, theor_mt):
     tot = 0
 
     for cb in pool:
@@ -49,14 +43,27 @@ def p(guess, theor_mt, pool):
 
     return tot/len(pool)
 
-entropies = []
-for cb in possible_guesses:
-    entropies.append([expected_entropy(cb, pool), cb])
-entropies.sort(reverse=True)
-pprint(entropies[0][1])
 
-# print(expected_entropy([1, 5], pool))
+while True:
+    # entropies = []
+    max_entropy = 0
+    best_answer = []
 
+    matches.append(int(input()))
+    pool = solve()
 
-# print(solve())
+    if len(pool) == 1:
+        print(pool[0])
+        break
 
+    for cb in possible_guesses:
+        new_entropy = E(cb)
+
+        if new_entropy > max_entropy:
+            max_entropy = new_entropy
+            best_answer = cb
+
+        # entropies.append([E(cb), cb])
+
+    print(best_answer)
+    guesses.append(best_answer)
