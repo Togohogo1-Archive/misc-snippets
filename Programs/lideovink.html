@@ -19,6 +19,12 @@
       </p>
 
       <p>
+        Playlist:
+        <input type="text" id="playlistInput">
+        <input type="button" value="Submit" onclick="submitPlaylist()">
+      </p>
+
+      <p>
         VideoLink pause:
         <input type="button" value="Opacity Filter", id="opacityButton" onclick="applyOpacity()">
       </p>
@@ -38,11 +44,14 @@
 
     const videoEmbed = document.getElementById("videoEmbed");
     const videoInput = document.getElementById("videoInput");
+    const playlistInput = document.getElementById("playlistInput");
     const opacityButton = document.getElementById("opacityButton");
     const video = document.getElementById("video");
 
+    // 15 pixel offset to prevent scroll bar from appearing
     videoEmbed.style.width = defaultWidth + 15 + "px";
     videoEmbed.style.height = defaultHeight + 15 + "px";
+
     resizeVideo(defaultWidth, defaultHeight);
 
     new ResizeObserver(outputSize).observe(videoEmbed);
@@ -61,15 +70,27 @@
       video.height = h;
     }
 
+    // Most basic video: https://www.youtube.com/watch?v=ID -> https://www.youtube.com/embed/ID
     function submitVideo() {
-      video.src = videoInput.value;
+      const splitLink = videoInput.value.split("watch?v=");
+      video.src = splitLink[0] + "embed/" + splitLink[1] + "?enablejsapi=1";
+    }
+
+    // Most basic playlist:           https://www.youtube.com/playlist?list=LIST_ID   -> https://www.youtube.com/embed/videoseries?list=LIST_ID
+    // Playlist with video specified: https://www.youtube.com/watch?v=ID&list=LIST_ID -> https://www.youtube.com/embed/ID?list=LIST_ID
+    function submitPlaylist() {
+      const splitPlaylist = playlistInput.value.split(/playlist\?list=|watch\?v=|\&list=/);
+
+      if (playlistInput.value.indexOf("playlist") > -1)
+        video.src = splitPlaylist[0] + "embed/videoseries?list=" + splitPlaylist[1] + "&enablejsapi=1";
+      else
+        video.src = splitPlaylist[0] + "embed/" + splitPlaylist[1] + "?list=" + splitPlaylist[2] + "&enablejsapi=1";
     }
 
     function hideVideo() {
       video.style.opacity = 0;
       video.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
       isOpaque = true;
-      console.log(video.contentWindow);
     }
 
     function showVideo() {
