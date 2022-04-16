@@ -69,22 +69,19 @@
       video.width = w;
       video.height = h;
     }
-    // TODO use string replace
+    // TODO read https://developer.mozilla.org/en-US/docs/Learn/Common_questions/set_up_a_local_testing_server
     // Most basic video: https://www.youtube.com/watch?v=ID -> https://www.youtube.com/embed/ID
     function submitVideo() {
-      const splitLink = videoInput.value.split("watch?v=");
-      video.src = splitLink[0] + "embed/" + splitLink[1] + "?enablejsapi=1";
+      video.src = videoInput.value.replace("watch?v=", "embed/") + "?enablejsapi=1";
     }
 
     // Most basic playlist:           https://www.youtube.com/playlist?list=LIST_ID   -> https://www.youtube.com/embed/videoseries?list=LIST_ID
     // Playlist with video specified: https://www.youtube.com/watch?v=ID&list=LIST_ID -> https://www.youtube.com/embed/ID?list=LIST_ID
     function submitPlaylist() {
-      const splitPlaylist = playlistInput.value.split(/playlist\?list=|watch\?v=|\&list=/);
-
       if (playlistInput.value.indexOf("playlist") > -1)
-        video.src = splitPlaylist[0] + "embed/videoseries?list=" + splitPlaylist[1] + "&enablejsapi=1";
+        video.src = playlistInput.value.replace("playlist", "embed/videoseries") + "&enablejsapi=1"
       else
-        video.src = splitPlaylist[0] + "embed/" + splitPlaylist[1] + "?list=" + splitPlaylist[2] + "&enablejsapi=1";
+        video.src = playlistInput.value.replace("watch?v=", "embed/").replace("&", "?") + "&enablejsapi=1";
     }
 
     function hideVideo() {
