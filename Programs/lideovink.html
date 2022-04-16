@@ -70,6 +70,7 @@
       video.height = h;
     }
     // TODO read https://developer.mozilla.org/en-US/docs/Learn/Common_questions/set_up_a_local_testing_server
+    // TODO replace these fake links with real links
     // Most basic video: https://www.youtube.com/watch?v=ID -> https://www.youtube.com/embed/ID
     function submitVideo() {
       video.src = videoInput.value.replace("watch?v=", "embed/") + "?enablejsapi=1";
