@@ -65,5 +65,5 @@ while True:
 
         # entropies.append([E(cb), cb])
 
-    print(best_answer)
+    print(best_answer, len(pool), pool)
     guesses.append(best_answer)
