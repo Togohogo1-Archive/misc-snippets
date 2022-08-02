@@ -1,0 +1,67 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\begin{document}
+
+\section{Problem Statement}
+Suppose we have $14$ (distinguishable) coins labelled $1$ through $14$. For $1 \leq i \leq 14$, let $h_i$ be the probability that the $i^{th}$ coin lands on heads when flipped. \\
+
+\noindent It is given that: if all $14$ coins are flipped at once, the probability of getting an even number of heads is $\frac{1}{2}$. \\
+
+\noindent Prove or Disprove: $h_k = \frac{1}{2}$ for some $k$.
+
+\section{Solution}
+We start be setting $x = h_1$, the probability of flipping heads for the first coin. \\
+
+\noindent For 1 coin, $x$ can only be $\frac{1}{2}$ because there are only two combinations, one of which results in a even number of heads: \\
+
+\noindent For 2 coins, the combinations include (even \# of heads boxed):
+\begin{itemize}
+    \item \fbox{HH}
+    \item HT
+    \item TH
+    \item \fbox{TT}
+\end{itemize}
+and we make the following observation, which works for any $k > 1$:
+\begin{align*}
+    P(\text{odd heads for $k-1$ coins}) \times h_k~  + \\ P(\text{even heads for $k-1$ coins}) \times (1-h_k) &= \\ P(\text{even heads for $k$ coins}) &= \frac{1}{2}
+\end{align*} \\
+
+\noindent For 2 coins, we first let $y = h_2$ and assume that $x = P(\text{even heads for 1 coin}) = \frac{1}{2}$. Thus, $P(\text{even heads for 2 coins})$ would just be:
+\begin{equation*}
+    \frac{1}{2}y + \frac{1}{2}(1-y) = \frac{1}{2}
+\end{equation*}
+implying that $y$ can be any probability given that $x = \frac{1}{2}$. \\
+
+\noindent Our only other option is to assume $x \neq \frac{1}{2}$. This would set $P(\text{even heads for 2 coins})$ to be:
+\begin{equation*}
+    xy + (1-x)(1-y) = \frac{1}{2}
+\end{equation*}
+Expanding this gives:
+\begin{equation*}
+    2xy + 1 - (x+y) = \frac{1}{2}
+\end{equation*}
+Now if we set $2xy = t$ and $1 - (x+y) = \frac{1}{2} - t$, we can rearrange for $y$ to get:
+\begin{equation*}
+    \begin{cases}
+        y = \frac{t}{2x} \\
+        y = t + \frac{1}{2} - x
+    \end{cases}
+\end{equation*}
+We equate these equations to get:
+\begin{alignat*}{2}
+    \qquad & &\frac{t}{2x} &= t + \frac{1}{2} - x \\
+    \implies \qquad & &t &= 2xt + x - 2x^2 \\
+    \implies \qquad & &t - 2xt &= x(1-2x) \\
+    \implies \qquad & &t &= \frac{x(1-2x)}{1-2x} \\
+    \implies \qquad & &t &= x \\
+    \implies \qquad & &y &= \frac{x}{2x} = \frac{1}{2}
+\end{alignat*} \\
+
+\noindent Thus, we have showed that if $x \neq \frac{1}{2}$, then $y = \frac{1}{2}$ and vice versa (or both are equal to $\frac{1}{2}$). Generalizing this, if $P(\text{even heads for $k-1$ coins}) = \frac{1}{2}$, then one of $h_1 \cdots h_{k-1}$ must equal to $\frac{1}{2}$. Otherwise, $h_k = \frac{1}{2}$. \\
+
+\noindent Therefore, it is proven that at least one of $h_k = \frac{1}{2}$ for some $k$.
+
+\end{document}
